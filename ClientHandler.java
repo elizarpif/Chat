@@ -10,7 +10,6 @@ import java.util.*;
 public class ClientHandler implements Runnable{
 
     private final static int port = 6666;
-    private static final String host = "localhost"; ///!!!
 
     private String name="unknownUser"+clients_count;
 

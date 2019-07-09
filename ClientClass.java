@@ -16,15 +16,12 @@ public class ClientClass {
     private Scanner in;
 
     private static int port = 6666;
-    private String address = "192.168.110.4"; //ip-address of your computer "192.168.40.11"
+    private String address = "127.0.0.1"; //ip-address of your computer "192.168.40.11"
     private String nickname ="";
 
     public ClientClass(){
         try{
 
-            //InetAddress iaLocal;
-            //iaLocal = InetAddress.getByName("192.168.100.1");
-            //printInetAdressInfo(iaLocal);
             this.socket = new Socket(InetAddress.getByName(this.address),port);
             this.in = new Scanner(this.socket.getInputStream());
             this.out = new PrintWriter(this.socket.getOutputStream());
@@ -65,9 +62,7 @@ public class ClientClass {
             System.out.println("command exit");
             this.socket.close();
             this.out.close();
-
             this.in.close();
-
 
         }catch(Exception ex){
             ex.printStackTrace();

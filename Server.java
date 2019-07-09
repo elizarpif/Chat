@@ -39,7 +39,7 @@ public class Server {
             try{
                 server.close();
                 socket.close();
-                System.out.println("Server is closed");
+                System.out.println("Server was closed");
             }
             catch(IOException ex){
                 ex.printStackTrace();
@@ -53,7 +53,7 @@ public class Server {
     public void sendMsgtoAllClients(String msg){
         for (ClientHandler o: clients)
         {
-            System.out.println("sending all clients "+msg);
+            System.out.println("sending to all clients "+msg);
             o.sendMsg(msg);
         }
     }
@@ -63,7 +63,7 @@ public class Server {
                 if (o.getName().equals(user))
                 {
                     o.sendMsg(fromUser.getName()+": "+msg);
-                    System.out.println("отправляю "+o.getName()+" msg "+fromUser.getName()+" : "+msg);
+                    System.out.println("sending "+o.getName()+" msg "+fromUser.getName()+" : "+msg);
 
                 }
             }
