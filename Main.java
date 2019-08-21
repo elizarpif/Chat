@@ -1,6 +1,7 @@
 package com.company;
 
 
+import java.io.File;
 
 public class Main {
 
@@ -8,7 +9,9 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("hello servr");
-        Server server = new Server();
+        //File dir1= new File("C:/Users/lil/IdeaProjects/Server/passwds");
+
+         Server server = new Server();
         //останавливать сервер!
 
     }

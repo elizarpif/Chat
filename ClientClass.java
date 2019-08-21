@@ -1,12 +1,11 @@
 package com.company;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class ClientClass {
 
@@ -15,8 +14,10 @@ public class ClientClass {
     private BufferedReader keyboard;
     private Scanner in;
 
+
+
     private static int port = 6666;
-    private String address = "127.0.0.1"; //ip-address of your computer "192.168.40.11"
+    private String address = "192.168.100.4"; //ip-address of your computer "192.168.40.11"
     private String nickname ="";
 
     public ClientClass(){
@@ -27,17 +28,17 @@ public class ClientClass {
             this.out = new PrintWriter(this.socket.getOutputStream());
             this.keyboard = new BufferedReader( new InputStreamReader(System.in));
 
-
-
-            while(this.nickname==""){   ///сделать проверку на пробелы!!!!
-                System.out.println("Please enter your nickname");
-                this.nickname = keyboard.readLine();
-            }
-            out.println("$name$"+this.nickname);
-            out.flush();
-            System.out.println("Loading list of users...");
-            out.println("$list$");
-            out.flush();
+//
+//
+//            while(this.nickname==""){   ///сделать проверку на пробелы!!!!
+//                System.out.println("Please enter your nickname");
+//                this.nickname = keyboard.readLine();
+//            }
+//            out.println("$name$"+this.nickname);
+//            out.flush();
+//            System.out.println("Loading list of users...");
+//            out.println("$list$");
+//            out.flush();
             ClientSender sender = new ClientSender();
             new Thread(sender).start();
             String line = "";
@@ -69,6 +70,7 @@ public class ClientClass {
         }
 
     }
+
 
     public class ClientSender implements Runnable {
         private boolean isStop = true;
