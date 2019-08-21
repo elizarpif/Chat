@@ -41,9 +41,7 @@ public class Server {
                 ClientHandler client = new ClientHandler(socket, this);
                 this.clients.add(client);
                 new Thread(client).start();
-
             }
-
         }
         catch(Exception ex){
             System.err.println(ex);
@@ -65,9 +63,11 @@ public class Server {
     public void addName(String s){
         clientNames.add(s);
     }
+    
     public void Log(String s){
         logger.info(s);
     }
+    
     public void sendMsgtoAllClients(String msg){
         for (ClientHandler o: clients)
         {
@@ -76,6 +76,7 @@ public class Server {
             o.sendMsg(msg);
         }
     }
+    
     public void sendMsgtoUser(String user, ClientHandler fromUser, String msg){
         if (clientNames.contains(user)){
             for( ClientHandler o: clients){
@@ -84,13 +85,13 @@ public class Server {
                     o.sendMsg(fromUser.getName()+": "+msg);
                     System.out.println("sending "+o.getName()+" msg "+fromUser.getName()+" : "+msg);
                     logger.info("sending "+o.getName()+" msg "+fromUser.getName()+" : "+msg);
-
                 }
             }
         }
         else
             fromUser.sendMsg("SERVER: client with name doesnt exist");
     }
+    
     public void removeClient(ClientHandler cl){
         System.out.println("deleting "+cl.getName());
         logger.info("deleting "+cl.getName());
@@ -110,12 +111,15 @@ public class Server {
            i++;
         }
     }
+    
     public boolean tryAuth(String l, String p){
         return auth.login(l,p);
     }
+    
     public boolean tryRegister(String login, String password) throws IOException {
         return auth.register(login, password);
     }
+    
     public void createRoom(String s, ClientHandler cl){
         if (roomNames.contains(s)){
             logger.info("room "+s+" exists");
@@ -129,6 +133,7 @@ public class Server {
             cl.sendMsg("New room "+s);
         }
     }
+    
     public void sendRoom(String name, String msg, ClientHandler cl){
         for (Room r:rooms
              ) {
@@ -139,9 +144,9 @@ public class Server {
             else{
                 cl.sendMsg("you must go in this room "+name);
             }
-
         }
     }
+    
     public void goRoom(String s, ClientHandler cl){
         if (roomNames.contains(s)){
             for (Room r:rooms
@@ -153,10 +158,10 @@ public class Server {
                 else{
                     //cl.sendMsg("you must go in this room "+name);
                 }
-
             }
         }
     }
+    
     public void listRoom(String r, ClientHandler cl){
         if (roomNames.contains(r)){
             for (Room l:rooms
